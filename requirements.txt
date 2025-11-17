@@ -2,7 +2,7 @@ asgiref==3.10.0
 certifi==2025.11.12
 charset-normalizer==3.4.4
 dataclasses==0.6
-Django==3.2
+Django==4.2.26
 djongo==1.3.6
 dnspython==2.7.0
 idna==3.11
