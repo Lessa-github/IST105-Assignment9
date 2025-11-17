@@ -1,0 +1,40 @@
+{% extends 'dna_center_cisco/base.html' %}
+
+{% block content %}
+    <h1>Device Interface Details</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="device_ip">Device IP:</label>
+        <input type="text" id="device_ip" name="device_ip" value="{{ device_ip|default:'' }}">
+        <button type="submit">Search Interfaces</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if interfaces %}
+        <h2>Interfaces for {{ device_ip }}</h2>
+        <table>
+            <tr>
+                <th>Port Name</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>VLAN</th>
+                <th>IP</th>
+            </tr>
+            {% for iface in interfaces %}
+            <tr>
+                <td>{{ iface.name }}</td>
+                <td>{{ iface.type }}</td>
+                <td>{{ iface.status }}</td>
+                <td>{{ iface.vlan }}</td>
+                <td>{{ iface.ip|default:'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif device_ip and not error %}
+        <p>No interfaces found for this device.</p>
+    {% endif %}
+{% endblock %}

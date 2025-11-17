@@ -1,0 +1,21 @@
+{% extends 'dna_center_cisco/base.html' %}
+
+{% block content %}
+    <h1>Get Authentication Token</h1>
+    <p>Click the button to get a new authentication token from the Cisco DNA Center Sandbox.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Get Token</button>
+    </form>
+
+    {% if token %}
+        <h2>Token Successfully Received:</h2>
+        <p class="token">{{ token }}</p>
+        <p>The token has been saved in your session. You can now navigate to other pages.</p>
+    {% endif %}
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+{% endblock %}

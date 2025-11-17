@@ -1,0 +1,32 @@
+{% extends 'dna_center_cisco/base.html' %}
+
+{% block content %}
+    <h1>Network Device List</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if devices %}
+        <table>
+            <tr>
+                <th>Hostname</th>
+                <th>Type</th>
+                <th>Management IP</th>
+                <th>Serial</th>
+                <th>Software Version</th>
+            </tr>
+            {% for dev in devices %}
+            <tr>
+                <td>{{ dev.hostname }}</td>
+                <td>{{ dev.type }}</td>
+                <td>{{ dev.ip }}</td>
+                <td>{{ dev.serial }}</td>
+                <td>{{ dev.software }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif not error %}
+        <p>No devices found or token not provided.</p>
+    {% endif %}
+{% endblock %}

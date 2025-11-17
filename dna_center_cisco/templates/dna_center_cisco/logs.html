@@ -1,0 +1,24 @@
+{% extends 'dna_center_cisco/base.html' %}
+
+{% block content %}
+    <h1>API Logs (from MongoDB)</h1>
+
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Action</th>
+            <th>IP (Optional)</th>
+            <th>Result</th>
+            <th>Details (Error)</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.timestamp }}</td>
+            <td>{{ log.action }}</td>
+            <td>{{ log.ip_address|default:'N/A' }}</td>
+            <td>{{ log.result }}</td>
+            <td>{{ log.details|default:'-' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

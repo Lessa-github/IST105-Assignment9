@@ -1,0 +1,9 @@
+# Python
+*.pyc
+__pycache__/
+venv/
+
+# Secret files
+*.sqlite3
+dnac_config.py
+dna_center_cisco/dnac_config.py
